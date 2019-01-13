@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, CardBody, CardHeader, CardText, Table } from 'reactstrap';
+import { Card, CardBody, CardHeader, Table } from 'reactstrap';
 import { instructionEncoding } from 'src/Models/IInstruction';
 
 interface IInstructionEncodingProps { 
@@ -23,7 +23,7 @@ class InstructionEncoding extends React.Component<IInstructionEncodingProps, IIn
                     <Card className="mb-3">
                         <CardHeader>Equivalent Instructions</CardHeader>
                         <CardBody>
-                            {this.props.enc.equivalentInstructions.map(v => <CardText key={v}><code>{v}</code></CardText>)}
+                            <pre className="mb-0"><code>{this.props.enc.equivalentInstructions.join('\n')}</code></pre>
                         </CardBody>
                     </Card>
                 </div>
