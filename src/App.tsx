@@ -13,7 +13,7 @@ class App extends React.Component {
     public render() {
         return (
             <div className="App">
-                <Router>
+                <Router basename={process.env.PUBLIC_URL || "/"}>
                     <div>
                         <Container className="bg-light mb-3" fluid={true}>
                             <div className="app-header py-3">
