@@ -24,7 +24,7 @@ class SyscallDetail extends React.Component<ISyscallDetailProps, ISyscallDetailS
                 <p>{this.props.item.description}</p>
                 <Row>
                     <Col sm="4">
-                        <Card>
+                        <Card className="mb-3">
                             <CardHeader>Code ($v0)</CardHeader>
                             <CardBody>
                                 <CardText>{this.props.item.number}</CardText>
@@ -32,7 +32,7 @@ class SyscallDetail extends React.Component<ISyscallDetailProps, ISyscallDetailS
                         </Card>
                     </Col>
                     <Col sm="4">
-                        <Card>
+                        <Card className="mb-3">
                             <CardHeader>Inputs</CardHeader>
                             <CardBody>
                                 <CardText>{this.props.item.inputs}</CardText>
@@ -40,7 +40,7 @@ class SyscallDetail extends React.Component<ISyscallDetailProps, ISyscallDetailS
                         </Card>
                     </Col>
                     <Col sm="4">
-                        <Card>
+                        <Card className="mb-3">
                             <CardHeader>Outputs</CardHeader>
                             <CardBody>
                                 <CardText>{this.props.item.outputs}</CardText>
