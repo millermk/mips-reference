@@ -1,0 +1,56 @@
+import * as React from 'react';
+import { Card, CardBody, CardHeader, CardText, Col, Row } from 'reactstrap';
+import { ISyscall } from 'src/Models/ISyscall';
+
+
+interface ISyscallDetailProps { 
+    item: ISyscall;
+}
+
+// tslint:disable-next-line:no-empty-interface
+interface ISyscallDetailState {
+}
+
+class SyscallDetail extends React.Component<ISyscallDetailProps, ISyscallDetailState> {
+    public constructor(props: ISyscallDetailProps) {
+        super(props);
+    }
+
+    public render() {
+        return (
+            <div>
+                <h1>{this.props.item.name}</h1>
+                <h4 className="text-primary">Summary</h4>
+                <p>{this.props.item.description}</p>
+                <Row>
+                    <Col sm="4">
+                        <Card>
+                            <CardHeader>Code ($v0)</CardHeader>
+                            <CardBody>
+                                <CardText>{this.props.item.number}</CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col sm="4">
+                        <Card>
+                            <CardHeader>Inputs</CardHeader>
+                            <CardBody>
+                                <CardText>{this.props.item.inputs}</CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col sm="4">
+                        <Card>
+                            <CardHeader>Outputs</CardHeader>
+                            <CardBody>
+                                <CardText>{this.props.item.outputs}</CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                </Row>
+            </div>
+        );
+    }
+}
+
+export default SyscallDetail;
