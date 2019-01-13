@@ -75,7 +75,7 @@ export const instructionTypeSource: IInstructionType[] = [
         encoding: {
             type: 'RI-Type',
             opcode: '000001',
-            rs: 'ssssss',
+            rs: 'sssss',
             regimm: 'rrrrr',
             imm: 'iiiiiiiiiiiiiiii'
         },
@@ -96,7 +96,7 @@ export const instructionTypeSource: IInstructionType[] = [
         encoding: {
             type: 'COP-Type',
             opcode: '0100oo',
-            funct: 'ffffff',
+            funct: 'fffff',
             rt: 'ttttt',
             rd: 'ddddd',
             addr: 'aaaaaaaaaaa'
@@ -146,7 +146,7 @@ export const instructionTypeSource: IInstructionType[] = [
             cond: 'cc',
             rd: 'ddddd',
             shamt: 'sssss',
-            funct: 'fffff'
+            funct: 'ffffff'
         },
         notes: 'Since this instruction type is not used for a large number of instructions, its name and some field names are not consistent across reference sources.'
     },

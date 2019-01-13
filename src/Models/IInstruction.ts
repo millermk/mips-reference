@@ -7,7 +7,7 @@ export enum instructionCategory {
     LOGICAL = "logical",
     COMPARISON = "comparison",
     SHIFT = "shift",
-    FLOAT_MOVE_AND_CONVERT = "float move and compare",
+    FLOAT_MOVE_AND_CONVERT = "float move and convert",
     FLOAT_ARITHMETIC = "float arithmetic",
     FLOAT_CONDITIONAL = "float conditional",
     SYSTEM = "system"

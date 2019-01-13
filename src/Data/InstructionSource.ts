@@ -12,7 +12,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'Pseudo-Instruction',
             equivalentInstructions: [
-                'addu $t, $zero, $zero'
+                'addu $t, $0, $0'
             ]
         },
         usage: 'clear $t',
@@ -248,7 +248,7 @@ export const instructionSource: IInstruction[] = [
             shamt: '-----',
             funct: '100001'
         },
-        usage: 'add $d, $s, $t',
+        usage: 'addu $d, $s, $t',
         result: 'd = s + t',
         tags: 'add addition plus'
     },
@@ -282,7 +282,7 @@ export const instructionSource: IInstruction[] = [
             rt: 'ttttt',
             imm: 'iiiiiiiiiiiiiiii'
         },
-        usage: 'addi $t, $s, imm',
+        usage: 'addiu $t, $s, imm',
         result: 't = s + imm',
         tags: 'add addition plus'
     },
@@ -334,7 +334,8 @@ export const instructionSource: IInstruction[] = [
             type: 'Pseudo-Instruction',
             equivalentInstructions: [
                 'addi $t, $s, -imm    # imm > -2^15',
-                'ori $at, $0, imm    # imm == -2^15',
+                '',
+                'ori $at, $0, imm     # imm == -2^15',
                 'sub $t, $s, $at'
             ]
         },
@@ -353,13 +354,14 @@ export const instructionSource: IInstruction[] = [
             type: 'Pseudo-Instruction',
             equivalentInstructions: [
                 'addiu $t, $s, -imm    # imm > -2^15',
-                'ori $at, $0, imm    # imm == -2^15',
+                '',
+                'ori $at, $0, imm      # imm == -2^15',
                 'subu $t, $s, $at'
             ]
         },
         usage: 'subu $t, $s, imm',
         result: 't = s - imm',
-        notes: 'MIPS does not provide a subtract immediate instruction because the immediate value can simply be negated by the assembler, and addiu used instead. If the value is -2^15 (which cannot be nagated in 16 bit 2\'s complement), two equivalent instructions are needed. This instruction may also be available as subiu in environments other than QtSpim.',
+        notes: 'MIPS does not provide a subtract immediate unsigned instruction because the immediate value can simply be negated by the assembler, and addiu used instead. If the value is -2^15 (which cannot be nagated in 16 bit 2\'s complement), two equivalent instructions are needed. This instruction may also be available as subiu in environments other than QtSpim.',
         tags: 'sub subtraction minus'
     },
     {
@@ -632,7 +634,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'Pseudo-Instruction',
             equivalentInstructions: [
-                'beq $s, $zero, C'
+                'beq $s, $0, C'
             ]
         },
         usage: 'beqz $s, label',
@@ -679,7 +681,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'Pseudo-Instruction',
             equivalentInstructions: [
-                'bne $s, $zero, C'
+                'bne $s, $0, C'
             ]
         },
         usage: 'bnez $s, label',
@@ -774,7 +776,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'Pseudo-Instruction',
             equivalentInstructions: [
-                'slt $at, $t, $s', // seems wrong!!
+                'slt $at, $t, $s',
                 'bne $at, $0, label'
             ]
         },
@@ -1139,7 +1141,7 @@ export const instructionSource: IInstruction[] = [
         },
         usage: 'sw $t, imm($s)',
         result: 'memory[s + imm] = t',
-        notes: 'Getting an unaligned address error with load word? The address must be aligned with a word boundary (i.e. it must be a multiple of 4). Double check the math you used to calculate the address, and check if you need to add a .align directive in your .data section.'
+        notes: 'Getting an unaligned address error with store word? The address must be aligned with a word boundary (i.e. it must be a multiple of 4). Double check the math you used to calculate the address, and check if you need to add a .align directive in your .data section.'
     },
     {
         id: 'slt',
@@ -1191,7 +1193,7 @@ export const instructionSource: IInstruction[] = [
             imm: 'iiiiiiiiiiiiiiii'
         },
         usage: 'slti $s, $t, imm',
-        result: 'd = s < imm'
+        result: 's = t < imm'
     },
     {
         id: 'sltiu',
@@ -1206,8 +1208,8 @@ export const instructionSource: IInstruction[] = [
             rt: 'ttttt',
             imm: 'iiiiiiiiiiiiiiii'
         },
-        usage: 'slti $s, $t, imm',
-        result: 'd = s < imm'
+        usage: 'sltiu $s, $t, imm',
+        result: 's = t < imm'
     },
     {
         id: 'sllv',
@@ -1594,7 +1596,7 @@ export const instructionSource: IInstruction[] = [
             funct: '‭001100‬'
         },
         usage: 'round.w.s $d, $s',
-        result: 'd = ⌊s⌋'
+        result: 'd = round(s)'
     },
     {
         id: 'round-w-d',
@@ -1612,7 +1614,7 @@ export const instructionSource: IInstruction[] = [
             funct: '‭001100‬'
         },
         usage: 'round.w.d $d, $s',
-        result: 'd = ⌊s⌋'
+        result: 'd = round(s)'
     },
     {
         id: 'trunc-w-s',
@@ -1630,7 +1632,7 @@ export const instructionSource: IInstruction[] = [
             funct: '‭001101‬'
         },
         usage: 'trunc.w.s $d, $s',
-        result: 'd = ⌊s⌋'
+        result: 'd = trunc(s)'
     },
     {
         id: 'trunc-w-d',
@@ -1648,7 +1650,7 @@ export const instructionSource: IInstruction[] = [
             funct: '‭001101‬'
         },
         usage: 'trunc.w.d $d, $s',
-        result: 'd = ⌊s⌋'
+        result: 'd = trunc(s)'
     },
     {
         id: 'ceil-w-s',
@@ -2028,7 +2030,7 @@ export const instructionSource: IInstruction[] = [
         id: 'c-le-s',
         assemblyName: 'c.le.s',
         name: 'Floating Point Compare Less Than or Equal Single',
-        description: 'Check if a single-precision floats is less than or equal to another single',
+        description: 'Check if a single-precision float is less than or equal to another single',
         category: instructionCategory.FLOAT_CONDITIONAL,
         instructionEncoding: {
             type: 'FCT-Type',
@@ -2049,7 +2051,7 @@ export const instructionSource: IInstruction[] = [
         id: 'c-le-d',
         assemblyName: 'c.le.d',
         name: 'Floating Point Compare Less Than or Equal Double',
-        description: 'Check if a double-precision floats is less than or equal to another double',
+        description: 'Check if a double-precision float is less than or equal to another double',
         category: instructionCategory.FLOAT_CONDITIONAL,
         instructionEncoding: {
             type: 'FCT-Type',
@@ -2070,7 +2072,7 @@ export const instructionSource: IInstruction[] = [
         id: 'c-lt-s',
         assemblyName: 'c.lt.s',
         name: 'Floating Point Compare Less Than Single',
-        description: 'Check if a single-precision floats is less than another single',
+        description: 'Check if a single-precision float is less than another single',
         category: instructionCategory.FLOAT_CONDITIONAL,
         instructionEncoding: {
             type: 'FCT-Type',
@@ -2091,7 +2093,7 @@ export const instructionSource: IInstruction[] = [
         id: 'c-lt-d',
         assemblyName: 'c.lt.d',
         name: 'Floating Point Compare Less Than Double',
-        description: 'Check if a double-precision floats is less than another double',
+        description: 'Check if a double-precision float is less than another double',
         category: instructionCategory.FLOAT_CONDITIONAL,
         instructionEncoding: {
             type: 'FCT-Type',
@@ -2123,7 +2125,7 @@ export const instructionSource: IInstruction[] = [
             imm: 'iiiiiiiiiiiiiiii'
         },
         usage: 'bc1f cc label',
-        result: 'if (conditional cc) PC = label;',
+        result: 'if (!conditional cc) PC = label;',
         notes: 'The condition code flag specifies which of the 8 condition codes to check. If it is omitted, 0 is the default.'
     },
     {
