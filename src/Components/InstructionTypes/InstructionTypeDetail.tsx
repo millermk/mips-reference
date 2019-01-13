@@ -28,7 +28,7 @@ class InstructionTypeDetail extends React.Component<IInstructionTypeDetailProps,
                         <h4 className="text-primary">Fields</h4>
                             <Row>
                                 {this.props.item.fields.map(v => (
-                                    <Col key={v.name} sm={Math.max(12/this.props.item.fields.length, 2)}>
+                                    <Col key={v.name} sm={Math.max(Math.floor(12/this.props.item.fields.length), 2)}>
                                         <Card className="mb-3">
                                             <CardHeader>{v.name}</CardHeader>
                                             <CardBody>
