@@ -1144,6 +1144,42 @@ export const instructionSource: IInstruction[] = [
         notes: 'Getting an unaligned address error with store word? The address must be aligned with a word boundary (i.e. it must be a multiple of 4). Double check the math you used to calculate the address, and check if you need to add a .align directive in your .data section.'
     },
     {
+        id: 'seq',
+        assemblyName: 'seq',
+        name: 'Set on Equal',
+        description: 'Check is a register is equal to than another register',
+        category: instructionCategory.COMPARISON,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'beq $s, $t, 12',
+                'ori $d, $0, 0',
+                'beq $0, $0, 8',
+                'ori $d, $0, 1'
+            ]
+        },
+        usage: 'seq $d, $s, $t',
+        result: 'd = s == t'
+    },
+    {
+        id: 'sne',
+        assemblyName: 'sne',
+        name: 'Set on Not Equal',
+        description: 'Check is a register is not equal to than another register',
+        category: instructionCategory.COMPARISON,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'beq $s, $t, 12',
+                'ori $d, $0, 1',
+                'beq $0, $0, 8',
+                'ori $d, $0, 0'
+            ]
+        },
+        usage: 'sne $d, $s, $t',
+        result: 'd = s != t'
+    },
+    {
         id: 'slt',
         assemblyName: 'slt',
         name: 'Set on Less Than',
@@ -1165,7 +1201,7 @@ export const instructionSource: IInstruction[] = [
         id: 'sltu',
         assemblyName: 'sltu',
         name: 'Set on Less Than Unsigned',
-        description: 'Check is a register is less than another register',
+        description: 'Check is a register is less than another register (unsigned)',
         category: instructionCategory.COMPARISON,
         instructionEncoding: {
             type: 'R-Type',
@@ -1199,7 +1235,7 @@ export const instructionSource: IInstruction[] = [
         id: 'sltiu',
         assemblyName: 'sltiu',
         name: 'Set on Less Than Immediate Unsigned',
-        description: 'Check is a register is less than an immediate',
+        description: 'Check is a register is less than an immediate (unsigned)',
         category: instructionCategory.COMPARISON,
         instructionEncoding: {
             type: 'I-Type',
@@ -1210,6 +1246,108 @@ export const instructionSource: IInstruction[] = [
         },
         usage: 'sltiu $s, $t, imm',
         result: 's = t < imm'
+    },
+    {
+        id: 'sle',
+        assemblyName: 'sle',
+        name: 'Set on Less Than or Equal',
+        description: 'Check is a register is less than or equal to than another register',
+        category: instructionCategory.COMPARISON,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'bne $s, $t, 12',
+                'ori $d, $0, 1',
+                'beq $0, $0, 8',
+                'slt $d, $s, $t'
+            ]
+        },
+        usage: 'sle $d, $s, $t',
+        result: 'd = s <= t'
+    },
+    {
+        id: 'sleu',
+        assemblyName: 'sleu',
+        name: 'Set on Less Than or Equal Unsigned',
+        description: 'Check is a register is less than or equal to than another register (unsigned)',
+        category: instructionCategory.COMPARISON,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'bne $s, $t, 12',
+                'ori $d, $0, 1',
+                'beq $0, $0, 8',
+                'sltu $d, $s, $t'
+            ]
+        },
+        usage: 'sleu $d, $s, $t',
+        result: 'd = s <= t'
+    },
+    {
+        id: 'sgt',
+        assemblyName: 'sgt',
+        name: 'Set on Greater Than',
+        description: 'Check is a register is greater than another register',
+        category: instructionCategory.COMPARISON,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'slt $d, $t, $s'
+            ]
+        },
+        usage: 'sgt $d, $s, $t',
+        result: 'd = s > t'
+    },
+    {
+        id: 'sgtu',
+        assemblyName: 'sgtu',
+        name: 'Set on Greater Than Unsigned',
+        description: 'Check is a register is greater than another register (unsigned)',
+        category: instructionCategory.COMPARISON,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'sltu $d, $t, $s'
+            ]
+        },
+        usage: 'sgtu $d, $s, $t',
+        result: 'd = s > t'
+    },
+    {
+        id: 'sge',
+        assemblyName: 'sge',
+        name: 'Set on Greater Than or Equal',
+        description: 'Check is a register is greater than or equal to than another register',
+        category: instructionCategory.COMPARISON,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'bne $s, $t, 12',
+                'ori $d, $0, 1',
+                'beq $0, $0, 8',
+                'slt $d, $t, $s'
+            ]
+        },
+        usage: 'sge $d, $s, $t',
+        result: 'd = s >= t'
+    },
+    {
+        id: 'sgeu',
+        assemblyName: 'sgeu',
+        name: 'Set on Greater Than or Equal Unsigned',
+        description: 'Check is a register is greater than or equal to than another register (unsigned)',
+        category: instructionCategory.COMPARISON,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'bne $s, $t, 12',
+                'ori $d, $0, 1',
+                'beq $0, $0, 8',
+                'sltu $d, $t, $s'
+            ]
+        },
+        usage: 'sgeu $d, $s, $t',
+        result: 'd = s >= t'
     },
     {
         id: 'sllv',
