@@ -564,6 +564,38 @@ export const instructionSource: IInstruction[] = [
         result: 'LO = s'
     },
     {
+        id: 'abs',
+        assemblyName: 'abs',
+        name: 'Absolute Value',
+        description: 'Find the absolute value of an integer',
+        category: instructionCategory.ARITHMETIC,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'addu $s, $0, $t',
+                'bgez $t, 8',
+                'sub $s, $0, $t'
+            ]
+        },
+        usage: 'abs $s, $t',
+        result: 's = |t|'
+    },
+    {
+        id: 'neg',
+        assemblyName: 'neg',
+        name: 'Negate',
+        description: 'Find the negation of an integer',
+        category: instructionCategory.ARITHMETIC,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'sub $s, $0, $t'
+            ]
+        },
+        usage: 'neg $s, $t',
+        result: 's = -t'
+    },
+    {
         id: 'b',
         assemblyName: 'b',
         name: 'Branch Unconditionally',
@@ -1095,6 +1127,24 @@ export const instructionSource: IInstruction[] = [
         notes: 'Getting an unaligned address error with load word? The address must be aligned with a word boundary (i.e. it must be a multiple of 4). Double check the math you used to calculate the address, and check if you need to add a .align directive in your .data section.'
     },
     {
+        id: 'lw-label',
+        assemblyName: 'lw',
+        name: 'Load Word Label',
+        description: 'Load a word from memory to a register by label',
+        category: instructionCategory.MEMORY,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'lui $at, label[31-16]',
+                'ori $at, $at, label[15-0]',
+                'lw $t, 0($at)'
+            ]
+        },
+        usage: 'lw $t, label',
+        result: 't = memory[label]',
+        notes: 'Getting an unaligned address error with load word? The address must be aligned with a word boundary (i.e. it must be a multiple of 4). Check if you need to add a .align directive in your .data section.'
+    },
+    {
         id: 'sb',
         assemblyName: 'sb',
         name: 'Store Byte',
@@ -1142,6 +1192,24 @@ export const instructionSource: IInstruction[] = [
         usage: 'sw $t, imm($s)',
         result: 'memory[s + imm] = t',
         notes: 'Getting an unaligned address error with store word? The address must be aligned with a word boundary (i.e. it must be a multiple of 4). Double check the math you used to calculate the address, and check if you need to add a .align directive in your .data section.'
+    },
+    {
+        id: 'sw-label',
+        assemblyName: 'sw',
+        name: 'Store Word Label',
+        description: 'Store a word from a register to memory by label',
+        category: instructionCategory.MEMORY,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'lui $at, label[31-16]',
+                'ori $at, $at, label[15-0]',
+                'sw $t, 0($at)'
+            ]
+        },
+        usage: 'sw $t, label',
+        result: 'memory[label] = t',
+        notes: 'Getting an unaligned address error with store word? The address must be aligned with a word boundary (i.e. it must be a multiple of 4). Check if you need to add a .align directive in your .data section.'
     },
     {
         id: 'seq',
@@ -1459,6 +1527,82 @@ export const instructionSource: IInstruction[] = [
         },
         usage: 'sra $d, $t, imm',
         result: 'd = t >> imm'
+    },
+    {
+        id: 'rol',
+        assemblyName: 'rol',
+        name: 'Rotate Left',
+        description: 'Rotate the contents of a register left by an amount from a register',
+        category: instructionCategory.SHIFT,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'subu $at, $0, $s',
+                'srlv $at, $t, $at',
+                'sllv $d, $s, $t',
+                'or $d, $d, $at'
+            ]
+        },
+        usage: 'rol $d, $t, $s',
+        result: 'd = rotateLeft(t, s)',
+        notes: "Only the least significant 5 bits of $s are used.",
+        tags: 'circular shift'
+    },
+    {
+        id: 'ror',
+        assemblyName: 'ror',
+        name: 'Rotate Right',
+        description: 'Rotate the contents of a register right by an amount from a register',
+        category: instructionCategory.SHIFT,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'subu $at, $0, $s',
+                'sllv $at, $t, $at',
+                'srlv $d, $s, $t',
+                'or $d, $d, $at'
+            ]
+        },
+        usage: 'rol $d, $t, $s',
+        result: 'd = rotateRight(t, s)',
+        notes: "Only the least significant 5 bits of $s are used.",
+        tags: 'circular shift'
+    },
+    {
+        id: 'roli',
+        assemblyName: 'rol',
+        name: 'Rotate Left Immediate',
+        description: 'Rotate the contents of a register left by the specified number of places',
+        category: instructionCategory.SHIFT,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'srl $at, $t, (32 - imm)',
+                'sll $d, $t, imm',
+                'or $d, $d, $at'
+            ]
+        },
+        usage: 'rol $d, $t, imm',
+        result: 'd = rotateLeft(t, imm)',
+        tags: 'circular shift'
+    },
+    {
+        id: 'rori',
+        assemblyName: 'ror',
+        name: 'Rotate Right Immediate',
+        description: 'Rotate the contents of a register right by the specified number of places',
+        category: instructionCategory.SHIFT,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'sll $at, $t, (32 - imm)',
+                'srl $d, $t, imm',
+                'or $d, $d, $at'
+            ]
+        },
+        usage: 'rol $d, $t, imm',
+        result: 'd = rotateRight(t, imm)',
+        tags: 'circular shift'
     },
     {
         id: 'mtc1',
@@ -2300,7 +2444,7 @@ export const instructionSource: IInstruction[] = [
             fd: 'ddddd',
             funct: '010001'
         },
-        usage: 'movf.s fd, fs, cc',
+        usage: 'movf.s $fd, $fs, cc',
         result: 'if (!conditional cc) d = s;',
         notes: 'The condition code flag specifies which of the 8 condition codes to check. If it is omitted, 0 is the default.'
     },
@@ -2320,7 +2464,7 @@ export const instructionSource: IInstruction[] = [
             fd: 'ddddd',
             funct: '010001'
         },
-        usage: 'movf.s fd, fs, cc',
+        usage: 'movf.s $fd, $fs, cc',
         result: 'if (!conditional cc) d = s;',
         notes: 'The condition code flag specifies which of the 8 condition codes to check. If it is omitted, 0 is the default.'
     },
@@ -2340,7 +2484,7 @@ export const instructionSource: IInstruction[] = [
             fd: 'ddddd',
             funct: '010001'
         },
-        usage: 'movt.s fd, fs, cc',
+        usage: 'movt.s $fd, $fs, cc',
         result: 'if (conditional cc) d = s;',
         notes: 'The condition code flag specifies which of the 8 condition codes to check. If it is omitted, 0 is the default.'
     },
@@ -2360,9 +2504,145 @@ export const instructionSource: IInstruction[] = [
             fd: 'ddddd',
             funct: '010001'
         },
-        usage: 'movt.d fd, fs, cc',
+        usage: 'movt.d $fd, $fs, cc',
         result: 'if (conditional cc) d = s;',
         notes: 'The condition code flag specifies which of the 8 condition codes to check. If it is omitted, 0 is the default.'
+    },
+    {
+        id: 'lwc1',
+        assemblyName: 'lwc1',
+        name: 'Load Word Coprocessor 1',
+        description: 'Load a word from memory to a floating point register',
+        category: instructionCategory.FLOAT_MEMORY,
+        instructionEncoding: {
+            type: 'I-Type',
+            opcode: '‭110001',
+            rs: 'sssss',
+            rt: 'ttttt',
+            imm: 'iiiiiiiiiiiiiiii'
+        },
+        usage: 'lwc1 $ft, imm($s)',
+        result: 'ft = memory[s + imm]',
+        notes: '$ft is a floating point register, $s is a general purpose register.'
+    },
+    {
+        id: 'ldc1',
+        assemblyName: 'ldc1',
+        name: 'Load Double Coprocessor 1',
+        description: 'Load two words from memory to two floating point registers',
+        category: instructionCategory.FLOAT_MEMORY,
+        instructionEncoding: {
+            type: 'I-Type',
+            opcode: '‭110101',
+            rs: 'sssss',
+            rt: 'ttttt',
+            imm: 'iiiiiiiiiiiiiiii'
+        },
+        usage: 'ldc1 $ft, imm($s)',
+        result: 'ft = memory[s + imm]',
+        notes: '$ft is a floating point register, $s is a general purpose register.'
+    },
+    {
+        id: 'swc1',
+        assemblyName: 'swc1',
+        name: 'Store Word Coprocessor 1',
+        description: 'Store a word from a floating point register to memory',
+        category: instructionCategory.FLOAT_MEMORY,
+        instructionEncoding: {
+            type: 'I-Type',
+            opcode: '‭111001',
+            rs: 'sssss',
+            rt: 'ttttt',
+            imm: 'iiiiiiiiiiiiiiii'
+        },
+        usage: 'swc1 $ft, imm($s)',
+        result: 'memory[s + imm] = ft',
+        notes: '$ft is a floating point register, $s is a general purpose register.'
+    },
+    {
+        id: 'sdc1',
+        assemblyName: 'sdc1',
+        name: 'Store Double Coprocessor 1',
+        description: 'Store two words from memory to two floating point registers',
+        category: instructionCategory.FLOAT_MEMORY,
+        instructionEncoding: {
+            type: 'I-Type',
+            opcode: '‭111101',
+            rs: 'sssss',
+            rt: 'ttttt',
+            imm: 'iiiiiiiiiiiiiiii'
+        },
+        usage: 'sdc1 $ft, imm($s)',
+        result: 'memory[s + imm] = ft',
+        notes: '$ft is a floating point register, $s is a general purpose register.'
+    },
+    {
+        id: 'l-s',
+        assemblyName: 'l.s',
+        name: 'Load Single',
+        description: 'Load a single-precision floating point value from memory to a register',
+        category: instructionCategory.FLOAT_MEMORY,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'lui $at, label[31-16]',
+                'ori $at, $at, label[15-0]',
+                'lwc1 $ft, 0($at)'
+            ]
+        },
+        usage: 'l.s $ft, label',
+        result: 'ft = memory[s + imm]',
+    },
+    {
+        id: 'l-d',
+        assemblyName: 'l.d',
+        name: 'Load Double',
+        description: 'Load a double-precision floating point value from memory to a register',
+        category: instructionCategory.FLOAT_MEMORY,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'lui $at, label[31-16]',
+                'ori $at, $at, label[15-0]',
+                'ldc1 $ft, 0($at)'
+            ]
+        },
+        usage: 'l.d $ft, label',
+        result: 'ft = memory[s + imm]',
+    },
+    {
+        id: 's-s',
+        assemblyName: 's.s',
+        name: 'Store Single',
+        description: 'Store a single-precision floating point value from memory to a register',
+        category: instructionCategory.FLOAT_MEMORY,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'lui $at, label[31-16]',
+                'ori $at, $at, label[15-0]',
+                'swc1 $ft, 0($at)'
+            ]
+        },
+        usage: 's.s $ft, label',
+        result: 'memory[s + imm] = ft',
+    },
+    {
+        id: 's-d',
+        assemblyName: 's.d',
+        name: 'Store Double',
+        description: 'Store a double-precision floating point value from memory to a register',
+        category: instructionCategory.FLOAT_MEMORY,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'lui $at, label[31-16]',
+                'ori $at, $at, label[15-0]',
+                'sdc1 $ft, 0($at)'
+            ]
+        },
+        usage: 's.d $ft, label',
+        result: 'memory[s + imm] = ft',
     },
     {
         id: 'mtc0',

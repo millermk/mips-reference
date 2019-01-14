@@ -10,6 +10,7 @@ export enum instructionCategory {
     FLOAT_MOVE_AND_CONVERT = "float move and convert",
     FLOAT_ARITHMETIC = "float arithmetic",
     FLOAT_CONDITIONAL = "float conditional",
+    FLOAT_MEMORY = "float memory",
     SYSTEM = "system"
 }
 
