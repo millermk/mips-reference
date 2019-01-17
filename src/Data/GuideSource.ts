@@ -6,7 +6,7 @@ export const guideSource: IGuide[] = [
     {
         id: 'arrays',
         name: 'Arrays',
-        description: 'Creatings, reading, and editing arrays',
+        description: 'Creating, reading, and editing arrays',
         items: [
             { type: 'heading', text: 'Allocating Arrays'},
             { type: 'paragraph', text: 'MIPS has no built-in concept of arrays, meaning they must be managed by the programmer from start to finish. The first step is to allocate space for the array:'},
@@ -37,7 +37,7 @@ export const guideSource: IGuide[] = [
     {
         id: 'strings',
         name: 'Strings',
-        description: 'Creatings, reading, and printing strings',
+        description: 'Creating, reading, and printing strings',
         items: [
             { type: 'heading', text: 'Initialized Strings'},
             { type: 'paragraph', text: 'MIPS assembly allows you to create string which are initialized to a given value using the .ascii and .asciiz directives:' },
