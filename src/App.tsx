@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, RouteComponentProps, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, NavLink, Route, RouteComponentProps, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import './App.css';
 
@@ -17,7 +17,9 @@ class App extends React.Component {
                     <div>
                         <Container className="bg-light mb-3" fluid={true}>
                             <div className="app-header py-3">
-                                <h1 className="display-3"><img className="App-logo" src={icon} />MIPS Reference</h1>
+                                <NavLink className="link-unstyled" to="/">
+                                    <h1 className="display-3"><img className="App-logo" src={icon} />MIPS Reference</h1>
+                                </NavLink>
                                 <p className="lead">MIPS instructions, syscalls, registers, and more</p>
 
                                 <Switch>
