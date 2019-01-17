@@ -387,7 +387,7 @@ export const instructionSource: IInstruction[] = [
         id: 'multu',
         assemblyName: 'multu',
         name: 'Multiply Unsigned',
-        description: 'Multiply two integers without overflow',
+        description: 'Multiply two integers (unsigned)',
         category: instructionCategory.ARITHMETIC,
         instructionEncoding: {
             type: 'R-Type',
@@ -442,7 +442,7 @@ export const instructionSource: IInstruction[] = [
         id: 'divu',
         assemblyName: 'divu',
         name: 'Divide Unsigned',
-        description: 'Divide two integers without overflow',
+        description: 'Divide two integers (unsigned)',
         category: instructionCategory.ARITHMETIC,
         instructionEncoding: {
             type: 'R-Type',
