@@ -141,7 +141,7 @@ class InstructionEncoding extends React.Component<IInstructionEncodingProps, IIn
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="col" key="v">length</th>
+                            <th scope="col" key="v">Length</th>
                             {(() => {
                                 return tableFormat.lengths.map((v, i) => <th scope="col" key={tableFormat.headings[i]}>{v}</th>);
                             })()}
