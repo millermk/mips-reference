@@ -22,7 +22,7 @@ class NavBar extends React.Component<INavBarProps, INavBarState> {
                 <Nav className="mb-2">
                     {Object.keys(DataStructure).map(k => (
                         <NavItem key={k}>
-                            <NavLink className="nav-link" activeClassName="nav-link disabled" to={`/${k}`}>{DataStructure[k].friendlyName}</NavLink>
+                            <NavLink className="nav-link" activeClassName="nav-link link-uncolored" to={`/${k}`}>{DataStructure[k].friendlyName}</NavLink>
                         </NavItem>
                     ))}
                 </Nav>
