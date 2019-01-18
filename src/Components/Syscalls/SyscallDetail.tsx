@@ -48,6 +48,12 @@ class SyscallDetail extends React.Component<ISyscallDetailProps, ISyscallDetailS
                         </Card>
                     </Col>
                 </Row>
+                {this.props.item.notes ? (
+                    <div>
+                        <h4 className="text-primary">Notes</h4>
+                        <p>{this.props.item.notes}</p>
+                    </div>
+                ) : null}
             </div>
         );
     }

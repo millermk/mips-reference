@@ -5,4 +5,5 @@ export interface ISyscall {
     inputs: string;
     outputs: string;
     number: string;
+    notes?: string;
 }
