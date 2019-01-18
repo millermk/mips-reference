@@ -4,21 +4,6 @@ import { IInstruction, instructionCategory } from 'src/Models/IInstruction';
 
 export const instructionSource: IInstruction[] = [
     {
-        id: 'clear',
-        assemblyName: 'clear',
-        name: 'Clear',
-        description: 'Set a register to zero',
-        category: instructionCategory.MISC,
-        instructionEncoding: {
-            type: 'Pseudo-Instruction',
-            equivalentInstructions: [
-                'addu $t, $0, $0'
-            ]
-        },
-        usage: 'clear $t',
-        result: 't = 0'
-    },
-    {
         id: 'move',
         assemblyName: 'move',
         name: 'Move',
