@@ -63,5 +63,36 @@ export const guideSource: IGuide[] = [
             { type: 'code', text: '.data;prompt: .asciiz "Enter a string (20 characters max): ";resultYes: .asciiz "The string contained the letter m";resultNo: .asciiz "The string did not contain the letter m";input: .space 21;;.text;main:;;li $v0, 4           # Syscall code for printing a string;la, $a0, prompt     # Address of string to print;syscall;;li $v0, 8           # Syscall code for reading a string;la, $a0, input      # Address to store the string at;li $a1, 21          # Length of string to read;syscall;;la $t0, input        # $t0 will hold current position in the string;li $t1, 109          # ASCII value of lower-case m;loop:;lbu $t2, 0($t0)      # Read a character from the string;beqz $t2, notFound   # If the character is a null terminator (zero), jump to notFound;beq $t2, $t1, found  # If the character is m, jump to found;addi $t0, $t0, 1     # Increment loop counter;b loop               # Did not find a null terminator or an m, so loop again;;notFound:;li $v0, 4           # Syscall code for printing a string;la, $a0, resultNo   # Address of string to print;syscall;;li $v0, 10          # Syscall code to terminate;syscall;;found:;li $v0, 4           # Syscall code for printing a string;la, $a0, resultYes  # Address of string to print;syscall;;li $v0, 10          # Syscall code to terminate;syscall'},
             { type: 'paragraph', text: 'Note: the address of the current character can be used as a "counter" when looping over a string. Each iteration of the loop should increment the counter by 1 (since characters are only 1 byte in ASCII). When the character read is a null terminator (ASCII value 0), the loop should stop.' },
         ]
+    },
+    {
+        id: 'errors',
+        name: 'Errors',
+        description: 'Common QtSpim errors',
+        items: [
+            { type: 'paragraph', text: 'QtSpim error messages can be a bit terse. This guide includes frequent errors in QtSpim and tips for fixing the most common causes.' },
+            { type: 'heading', text: 'Label is Defined for the Second Time'},
+            { type: 'code', text: 'Error Message:;spim: (parser) Label is defined for the second time on line n of file /*/*.s    label:'},
+            { type: 'paragraph', text: 'This error indicates a label has been defined twice. Double check that you have not used the same label name twice in your program. This error also occurs if you load a file twice in QtSpim without re-initializing; make sure you are using "Reinitialize and Load File" not "Load File".' },
+            { type: 'heading', text: 'Instruction References Undefined Symbol'},
+            { type: 'code', text: 'Error Message:;Instruction references undefined symbol at 0x00400014 [00400014] 0x0c000000  jal 0x00000000 [main]    : 188: jal main '},
+            { type: 'paragraph', text: 'This error indicates your program has no main label. Try adding main: to the start of your .text segment.' },
+            { type: 'code', text: 'Error Message:;Instruction references undefined symbol at 0x-------- [--------] 0x--------  inst <args>    : ---: inst <args> '},
+            { type: 'paragraph', text: 'This error indicates your program is trying to reference a label which is not defined. The most common cause is typos. If the instruction resulting in the error is la, lw, or sw, the corresponding label should be in the .data section. If the instruction resulting the error is a branch or jump, the corresponding label should be in the .text section.' },
+            { type: 'heading', text: 'Attempt to Execute Non-Instruction'},
+            { type: 'code', text: 'Error Message:;Attempt to execute non-instruction at 0x--------'},
+            { type: 'paragraph', text: 'This error message indicates that the program counter is not referencing a valid instruction. The most common cause is that your program does not end with a syscall for termination (syscall code 10). It could also be caused by calling jr $ra with an incorrect address in $ra.' },
+            { type: 'heading', text: 'Unaligned Address'},
+            { type: 'code', text: 'Error Message:;Unaligned address in inst/data fetch: 0x--------'},
+            { type: 'paragraph', text: 'This error message indicates that you are trying to access a memory address that is not aligned to the expected boundary for the current instruction. In most cases, this results from using lw or sw to access an item from the .data section. In the .data section, try adding .align 2 on the line above the item you are trying to access.' },
+            { type: 'heading', text: 'Bad Address'},
+            { type: 'code', text: 'Error Message:;Bad address in data/stack read: 0x--------'},
+            { type: 'paragraph', text: 'This error message indicates that you are trying to access a memory address that is available to be read/written. In most cases, this results from using a load or store instruction with an incorrectly calculated address. In particular, an unset register with a value of 0 is a "bad address". Ensure the address you are trying to access correctly references an item declared in the .data section.' },
+            { type: 'heading', text: "Can't Put Data in Text Segment"},
+            { type: 'code', text: "Error Message:;Can't put data in text segment on line n of file /*/*.s    .label .type args"},
+            { type: 'paragraph', text: 'This error message indicates that you are trying to use a directive that belongs in a .data segment in another segment. Most commonly, it is caused by forgetting the .data directive.' },
+            { type: 'heading', text: "Target of Jump Differs in High-Order 4 Bits from Instruction PC"},
+            { type: 'code', text: "Error Message:;Target of jump differs in high-order 4 bits from instruction pc 0x400014"},
+            { type: 'paragraph', text: 'This error message indicates that you are trying to jump further than a jump instruction will allow. The most common cause is forgetting the .text directive prior to your code (which means the main label will not be within the text segment as expected). This error can also be caused by a jump instruction which accidentally references the label of an item in the .data section.' },
+        ]
     }
 ]
