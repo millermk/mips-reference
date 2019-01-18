@@ -70,6 +70,9 @@ export const guideSource: IGuide[] = [
         description: 'Common QtSpim errors',
         items: [
             { type: 'paragraph', text: 'QtSpim error messages can be a bit terse. This guide includes frequent errors in QtSpim and tips for fixing the most common causes.' },
+            { type: 'heading', text: "Syntax Error"},
+            { type: 'code', text: "spim: (parser) syntax error on line n of file /*/*.s    inst args"},
+            { type: 'paragraph', text: 'This error message indicates that the line of code shown cannot be understood by QtSpim. Common causes include misspelled instruction names, typos in register names or other arguments, and missing commas. You may also see the error if you are using an instruction which is supported in other environments (e.g. MARS) but not in QtSpim.' },
             { type: 'heading', text: 'Label is Defined for the Second Time'},
             { type: 'code', text: 'Error Message:;spim: (parser) Label is defined for the second time on line n of file /*/*.s    label:'},
             { type: 'paragraph', text: 'This error indicates a label has been defined twice. Double check that you have not used the same label name twice in your program. This error also occurs if you load a file twice in QtSpim without re-initializing; make sure you are using "Reinitialize and Load File" not "Load File".' },
