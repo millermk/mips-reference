@@ -951,6 +951,39 @@ export const instructionSource: IInstruction[] = [
         result: 'd = s ^ t'
     },
     {
+        id: 'nor',
+        assemblyName: 'nor',
+        name: 'Bitwise Nor',
+        description: 'Bitwise nor two registers',
+        category: instructionCategory.LOGICAL,
+        instructionEncoding: {
+            type: 'R-Type',
+            opcode: '000000',
+            rs: 'sssss',
+            rt: 'ttttt',
+            rd: 'ddddd',
+            shamt: '00000',
+            funct: '100111‬'
+        },
+        usage: 'nor $d, $s, $t',
+        result: 'd = ~(s | t)'
+    },
+    {
+        id: 'not',
+        assemblyName: 'not',
+        name: 'Bitwise Not',
+        description: 'Bitwise not a register',
+        category: instructionCategory.LOGICAL,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'nor $s, $t, $0'
+            ]
+        },
+        usage: 'not $s, $t',
+        result: 's = ~(t)'
+    },
+    {
         id: 'xori',
         assemblyName: 'xori',
         name: 'Bitwise Exclusive Or Immediate',
