@@ -36,3 +36,7 @@
 .link-uncolored, .link-uncolored:link, .link-uncolored:hover {
   color: inherit;
 }
+
+input[type=text]::-ms-clear {
+  display: none;
+}
