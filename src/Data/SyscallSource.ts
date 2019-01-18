@@ -33,7 +33,8 @@ export const syscallSource: ISyscall[] = [
         inputs: '$a0 = address of string to print',
         name: 'Print String',
         number: '4',
-        outputs: '<none>'
+        outputs: '<none>',
+        notes: 'The string must be null terminated.'
     },
     {
         description: 'Read an integer from the console',
@@ -65,7 +66,8 @@ export const syscallSource: ISyscall[] = [
         inputs: '$a0 = address to store inputted string; $a1 = number of characters to read',
         name: 'Read String',
         number: '8',
-        outputs: '<none>'
+        outputs: '<none>',
+        notes: 'The number of characters to read (specified in $a1) is a maximum; the syscall will keep reading characters until you enter a newline (press enter) or it reaches the maximum. If you press enter before the maximum number of characters has been read, the newline character (ASCII value 10) will be included in the inputted string. The number of characters to read also includes the null terminator. Thus, the maximum number of characters which can be read from the console is actually one less than number specified.'
     },
     {
         description: 'Allocate memory dynamically',
