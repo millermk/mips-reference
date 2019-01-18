@@ -951,6 +951,22 @@ export const instructionSource: IInstruction[] = [
         result: 'd = s ^ t'
     },
     {
+        id: 'xori',
+        assemblyName: 'xori',
+        name: 'Bitwise Exclusive Or Immediate',
+        description: 'Bitwise exclusive or a register and an immediate',
+        category: instructionCategory.LOGICAL,
+        instructionEncoding: {
+            type: 'I-Type',
+            opcode: '001110',
+            rs: 'sssss',
+            rt: 'ttttt',
+            imm: 'iiiiiiiiiiiiiiii'
+        },
+        usage: 'xori $t, $s, imm',
+        result: 't = s ^ imm'
+    },
+    {
         id: 'nor',
         assemblyName: 'nor',
         name: 'Bitwise Nor',
@@ -982,22 +998,6 @@ export const instructionSource: IInstruction[] = [
         },
         usage: 'not $s, $t',
         result: 's = ~(t)'
-    },
-    {
-        id: 'xori',
-        assemblyName: 'xori',
-        name: 'Bitwise Exclusive Or Immediate',
-        description: 'Bitwise exclusive or a register and an immediate',
-        category: instructionCategory.LOGICAL,
-        instructionEncoding: {
-            type: 'I-Type',
-            opcode: '001110',
-            rs: 'sssss',
-            rt: 'ttttt',
-            imm: 'iiiiiiiiiiiiiiii'
-        },
-        usage: 'xori $t, $s, imm',
-        result: 't = s ^ imm'
     },
     {
         id: 'j',
