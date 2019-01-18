@@ -141,24 +141,24 @@ class InstructionEncoding extends React.Component<IInstructionEncodingProps, IIn
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="col" key="v">Length</th>
+                            <th scope="row" key="v">Length</th>
                             {(() => {
-                                return tableFormat.lengths.map((v, i) => <th scope="col" key={tableFormat.headings[i]}>{v}</th>);
+                                return tableFormat.lengths.map((v, i) => <td key={tableFormat.headings[i]}>{v}</td>);
                             })()}
                         </tr>
                         <tr>
-                            <th scope="col">
+                            <th scope="row">
                                 <span className="bit-number-offset"/>
                                 <span className="bit-number">Bit&nbsp;Numbers</span><br/>
                                 <span className="bit-value">Bit&nbsp;Values</span>
                             </th>
                             {(() => {
                                 return tableFormat.values.map((v, i) => 
-                                    <th scope="col" key={v}>
+                                    <td className="text-nowrap font-weight-bold" key={v}>
                                         <span className="bit-number-offset"/>
                                         <span className="bit-number text-monospace">{tableFormat.bits[i]}</span><br/>
                                         <span className="bit-value text-monospace">{v}</span>
-                                    </th>
+                                    </td>
                                 );
                             })()}
                         </tr>
