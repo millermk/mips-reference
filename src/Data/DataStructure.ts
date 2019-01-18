@@ -5,7 +5,7 @@ import { guideSource } from './GuideSource';
 import { instructionSource } from './InstructionSource';
 import { instructionTypeFromEncoding, instructionTypeSource } from './InstructionTypeSource';
 import { registerSource } from './RegisterSource';
-import { syscallSource } from './SyscallTource';
+import { syscallSource } from './SyscallSource';
 
 import GuideDetail from 'src/Components/Guides/GuideDetail';
 import GuideList from 'src/Components/Guides/GuideList';
