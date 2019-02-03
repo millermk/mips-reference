@@ -57,7 +57,7 @@ export const instructionTypeSource: IInstructionType[] = [
         ],
         encoding: {
             type: 'J-Type',
-            opcode: '00001o',
+            opcode: '000010',
             addr: 'aaaaaaaaaaaaaaaaaaaaaaaaaa'
         }
     },
