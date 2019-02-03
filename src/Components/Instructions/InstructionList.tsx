@@ -29,7 +29,7 @@ class InstructionList extends React.Component<IInstructionListProps, IInstructio
 
     public componentWillMount() {
         this.setState({
-            searchText: (URLSearchParams && (new URLSearchParams(this.props.location.search)).get('search')) || ''
+            searchText: (window.URLSearchParams && (new URLSearchParams(this.props.location.search)).get('search')) || ''
         });
     }
 
