@@ -122,6 +122,15 @@ class InstructionEncoding extends React.Component<IInstructionEncodingProps, IIn
                     }
                     break;
                 }
+                case 'SPECIAL2-Type': {
+                    tableFormat = {
+                        bits: ['31 30 29 28 27 26', '25 24 23 22 21', '20 19 18 17 16', '15 14 13 12 11', '10 09 08 07 06', '05 04 03 02 01 00'],
+                        headings: ["opcode", "rs", "rt", "rd", "special", "funct"],
+                        lengths: [6, 5, 5, 5, 5, 6],
+                        values: [enc.opcode, enc.rs, enc.rt, enc.rd, enc.special, enc.funct]
+                    }
+                    break;
+                }
                 default: {
                     throw new Error("Unknown instruction type");
                 }

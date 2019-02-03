@@ -388,17 +388,95 @@ export const instructionSource: IInstruction[] = [
         tags: 'multiply multiplication times'
     },
     {
+        id: 'madd',
+        assemblyName: 'madd',
+        name: 'Multiply and Add',
+        description: 'Multiply two integers and add',
+        category: instructionCategory.ARITHMETIC,
+        instructionEncoding: {
+            type: 'SPECIAL2-Type',
+            opcode: '011100',
+            rs: 'sssss',
+            rt: 'ttttt',
+            rd: '-----',
+            special: '-----',
+            funct: '000000'
+        },
+        usage: 'madd $s, $t',
+        result: '[HI, LO] += s * t',
+        tags: 'multiply multiplication times'
+    },
+    {
+        id: 'maddu',
+        assemblyName: 'maddu',
+        name: 'Multiply and Add Unsigned',
+        description: 'Multiply two integers and add (unsigned)',
+        category: instructionCategory.ARITHMETIC,
+        instructionEncoding: {
+            type: 'SPECIAL2-Type',
+            opcode: '011100',
+            rs: 'sssss',
+            rt: 'ttttt',
+            rd: '-----',
+            special: '-----',
+            funct: '000001'
+        },
+        usage: 'maddu $s, $t',
+        result: '[HI, LO] += s * t',
+        tags: 'multiply multiplication times'
+    },
+    {
+        id: 'msub',
+        assemblyName: 'msub',
+        name: 'Multiply and Subtract',
+        description: 'Multiply two integers and Subtract',
+        category: instructionCategory.ARITHMETIC,
+        instructionEncoding: {
+            type: 'SPECIAL2-Type',
+            opcode: '011100',
+            rs: 'sssss',
+            rt: 'ttttt',
+            rd: '-----',
+            special: '-----',
+            funct: '000100'
+        },
+        usage: 'msub $s, $t',
+        result: '[HI, LO] -= s * t',
+        tags: 'multiply multiplication times'
+    },
+    {
+        id: 'msubu',
+        assemblyName: 'msubu',
+        name: 'Multiply and Subtract Unsigned',
+        description: 'Multiply two integers and subtract (unsigned)',
+        category: instructionCategory.ARITHMETIC,
+        instructionEncoding: {
+            type: 'SPECIAL2-Type',
+            opcode: '011100',
+            rs: 'sssss',
+            rt: 'ttttt',
+            rd: '-----',
+            special: '-----',
+            funct: '000101'
+        },
+        usage: 'msubu $s, $t',
+        result: '[HI, LO] -= s * t',
+        tags: 'multiply multiplication times'
+    },
+    {
         id: 'mul',
         assemblyName: 'mul',
         name: 'Multiply and return lower 32 bits',
         description: 'Multiply two integers, keeping only the lower 32 bits',
         category: instructionCategory.ARITHMETIC,
         instructionEncoding: {
-            type: 'Pseudo-Instruction',
-            equivalentInstructions: [
-                'mult $s, $t',
-                'mflo $d'
-            ]
+            type: 'SPECIAL2-Type',
+            opcode: '011100',
+            rs: 'sssss',
+            rt: 'ttttt',
+            rd: 'ddddd',
+            special: '-----',
+            funct: '000010'
         },
         usage: 'mul $d, $s, $t',
         result: 'd = s * t (lower 32 bits only)',

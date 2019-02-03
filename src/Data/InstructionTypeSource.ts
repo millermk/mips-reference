@@ -228,6 +228,30 @@ export const instructionTypeSource: IInstructionType[] = [
         notes: 'Since this instruction type is not used for a large number of instructions, its name and some field names are not consistent across reference sources.'
     },
     {
+        id: 'special-two',
+        name: 'SPECIAL2-Type',
+        shortName: 'SPECIAL2',
+        description: "SPECIAL2-type is used for some instructions added in later versions of the MIPS processor.",
+        fields: [
+            {name: 'opcode', size: 6},
+            {name: 'rs', size: 5},
+            {name: 'rt', size: 5},
+            {name: 'rd', size: 5},
+            {name: 'special', size: 5},
+            {name: 'funct', size: 6},
+        ],
+        encoding: {
+            type: 'SPECIAL2-Type',
+            opcode: '011100',
+            rs: 'sssss',
+            rt: 'ttttt',
+            rd: 'ddddd',
+            special: 'sssss',
+            funct: 'ffffff'
+        },
+        notes: 'Since this instruction type is not used for a large number of instructions, its name and some field names are not consistent across reference sources.'
+    },
+    {
         id: 'pseudo-instruction',
         name: 'Pseudo-Instruction',
         shortName: 'PSEUDO',

@@ -108,12 +108,22 @@ export interface IRCTypeEncoding {
     funct: string
 }
 
+export interface ISPECIAL2TypeEncoding {
+    type: 'SPECIAL2-Type',
+    opcode: string,
+    rs: string,
+    rt: string;
+    rd: string;
+    special: string,
+    funct: string
+}
+
 export interface IPseudoEncoding {
     type: 'Pseudo-Instruction',
     equivalentInstructions: string[];
 }
 
-export type instructionEncoding = IRTypeEncoding | IRITypeEncoding | IJTypeEncoding | IITypeEncoding | ICOPTypeEncoding | IFTypeEncoding | IFCOTypeEncoding | IFCTTypeEncoding | IICTypeEncoding | IRCTypeEncoding | IPseudoEncoding;
+export type instructionEncoding = IRTypeEncoding | IRITypeEncoding | IJTypeEncoding | IITypeEncoding | ICOPTypeEncoding | IFTypeEncoding | IFCOTypeEncoding | IFCTTypeEncoding | IICTypeEncoding | IRCTypeEncoding | ISPECIAL2TypeEncoding | IPseudoEncoding;
 
 export interface IInstruction {
     id: string;
