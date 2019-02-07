@@ -96,7 +96,7 @@ export const assemblerDirectiveSource: IAssemblerDirective[] = [
         name: '.float',
         usage: '.float f1, ..., fn',
         description: 'Store n floats in memory',
-        arguments: 'f1, ..., fn: the bytes to store in memory',
+        arguments: 'f1, ..., fn: the floats to store in memory',
         effect: 'The floats are stored in the current segment.',
         notes: 'Typically, this directive is preceded by a label so the floats can be referenced conveniently.'
     },
@@ -105,7 +105,7 @@ export const assemblerDirectiveSource: IAssemblerDirective[] = [
         name: '.double',
         usage: '.double d1, ..., dn',
         description: 'Store n doubles in memory',
-        arguments: 'd1, ..., dn: the bytes to store in memory',
+        arguments: 'd1, ..., dn: the doubles to store in memory',
         effect: 'The doubles are stored in the current segment.',
         notes: 'Typically, this directive is preceded by a label so the doubles can be referenced conveniently.'
     },
