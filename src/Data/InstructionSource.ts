@@ -1103,7 +1103,7 @@ export const instructionSource: IInstruction[] = [
             addr: 'aaaaaaaaaaaaaaaaaaaaaaaaaa'
         },
         usage: 'jal label',
-        result: 'RA = PC + 4; PC = label;'
+        result: '$ra = PC + 4; PC = label;'
     },
     {
         id: 'jr',
@@ -1138,8 +1138,23 @@ export const instructionSource: IInstruction[] = [
             shamt: '-----',
             funct: '001001'
         },
-        usage: 'jalr $s, $d',
+        usage: 'jalr $d, $s',
         result: 'd = PC + 4; PC = s;'
+    },
+    {
+        id: 'jalr-implied',
+        assemblyName: 'jalr',
+        name: 'Jump Register and Link (link register implied)',
+        description: 'Jump to the address in a register and link (link register implied)',
+        category: instructionCategory.JUMP,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'jal $ra, $s'
+            ]
+        },
+        usage: 'jalr $s',
+        result: '$ra = PC + 4; PC = s;'
     },
     {
         id: 'lb',
