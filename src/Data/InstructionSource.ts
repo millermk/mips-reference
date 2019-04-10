@@ -1150,7 +1150,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'Pseudo-Instruction',
             equivalentInstructions: [
-                'jal $ra, $s'
+                'jalr $ra, $s'
             ]
         },
         usage: 'jalr $s',
