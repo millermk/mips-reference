@@ -636,7 +636,7 @@ export const instructionSource: IInstruction[] = [
             type: 'Pseudo-Instruction',
             equivalentInstructions: [
                 'addu $s, $0, $t',
-                'bgez $t, 8',
+                'bgez $t, 4',
                 'sub $s, $0, $t'
             ]
         },
@@ -1331,9 +1331,9 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'Pseudo-Instruction',
             equivalentInstructions: [
-                'beq $s, $t, 12',
+                'beq $s, $t, 8',
                 'ori $d, $0, 0',
-                'beq $0, $0, 8',
+                'beq $0, $0, 4',
                 'ori $d, $0, 1'
             ]
         },
@@ -1349,9 +1349,9 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'Pseudo-Instruction',
             equivalentInstructions: [
-                'beq $s, $t, 12',
+                'beq $s, $t, 8',
                 'ori $d, $0, 1',
-                'beq $0, $0, 8',
+                'beq $0, $0, 4',
                 'ori $d, $0, 0'
             ]
         },
@@ -1435,9 +1435,9 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'Pseudo-Instruction',
             equivalentInstructions: [
-                'bne $s, $t, 12',
+                'bne $s, $t, 8',
                 'ori $d, $0, 1',
-                'beq $0, $0, 8',
+                'beq $0, $0, 4',
                 'slt $d, $s, $t'
             ]
         },
@@ -1453,9 +1453,9 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'Pseudo-Instruction',
             equivalentInstructions: [
-                'bne $s, $t, 12',
+                'bne $s, $t, 8',
                 'ori $d, $0, 1',
-                'beq $0, $0, 8',
+                'beq $0, $0, 4',
                 'sltu $d, $s, $t'
             ]
         },
@@ -1501,9 +1501,9 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'Pseudo-Instruction',
             equivalentInstructions: [
-                'bne $s, $t, 12',
+                'bne $s, $t, 8',
                 'ori $d, $0, 1',
-                'beq $0, $0, 8',
+                'beq $0, $0, 4',
                 'slt $d, $t, $s'
             ]
         },
@@ -1519,9 +1519,9 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'Pseudo-Instruction',
             equivalentInstructions: [
-                'bne $s, $t, 12',
+                'bne $s, $t, 8',
                 'ori $d, $0, 1',
-                'beq $0, $0, 8',
+                'beq $0, $0, 4',
                 'sltu $d, $t, $s'
             ]
         },
