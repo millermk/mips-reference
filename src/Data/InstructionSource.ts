@@ -2111,7 +2111,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'F-Type',
             opcode: '‭010001',
-            format: '‭010000',
+            format: '10000',
             ft : 'sssss',
             fs: 'sssss',
             fd: 'ddddd',
@@ -2130,7 +2130,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'F-Type',
             opcode: '‭010001',
-            format: '‭010001',
+            format: '10001',
             ft : 'sssss',
             fs: 'sssss',
             fd: 'ddddd',
@@ -2149,7 +2149,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'F-Type',
             opcode: '‭010001',
-            format: '‭010000',
+            format: '10000',
             ft : 'sssss',
             fs: 'sssss',
             fd: 'ddddd',
@@ -2168,7 +2168,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'F-Type',
             opcode: '‭010001',
-            format: '‭010001',
+            format: '10001',
             ft : 'sssss',
             fs: 'sssss',
             fd: 'ddddd',
@@ -2187,7 +2187,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'F-Type',
             opcode: '‭010001',
-            format: '‭010000',
+            format: '‭10000',
             ft : 'sssss',
             fs: 'sssss',
             fd: 'ddddd',
@@ -2206,7 +2206,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'F-Type',
             opcode: '‭010001',
-            format: '‭010001',
+            format: '‭10001',
             ft : 'sssss',
             fs: 'sssss',
             fd: 'ddddd',
@@ -2225,7 +2225,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'F-Type',
             opcode: '‭010001',
-            format: '‭010000',
+            format: '‭10000',
             ft : 'sssss',
             fs: 'sssss',
             fd: 'ddddd',
@@ -2244,7 +2244,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'F-Type',
             opcode: '‭010001',
-            format: '‭010001',
+            format: '10001',
             ft : 'sssss',
             fs: 'sssss',
             fd: 'ddddd',
@@ -2263,7 +2263,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'F-Type',
             opcode: '‭010001',
-            format: '‭010000',
+            format: '‭10000',
             ft : 'sssss',
             fs: 'sssss',
             fd: 'ddddd',
@@ -2281,7 +2281,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'F-Type',
             opcode: '‭010001',
-            format: '‭010001',
+            format: '‭10001',
             ft : 'sssss',
             fs: 'sssss',
             fd: 'ddddd',
@@ -2497,7 +2497,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'IC-Type',
             opcode: '‭010001',
-            format: '‭001000',
+            format: '‭01000',
             cc: 'ccc',
             cond: '00',
             imm: 'iiiiiiiiiiiiiiii'
@@ -2515,7 +2515,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'IC-Type',
             opcode: '‭010001',
-            format: '‭001000',
+            format: '‭01000',
             cc: 'ccc',
             cond: '01',
             imm: 'iiiiiiiiiiiiiiii'
@@ -2533,7 +2533,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'FCO-Type',
             opcode: '‭010001',
-            format: '‭010000',
+            format: '10000',
             cc: 'ccc',
             cond: '00',
             fs: 'sssss',
@@ -2553,7 +2553,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'FCO-Type',
             opcode: '‭010001',
-            format: '‭010001',
+            format: '‭10001',
             cc: 'ccc',
             cond: '00',
             fs: 'sssss',
@@ -2573,7 +2573,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'FCO-Type',
             opcode: '‭010001',
-            format: '‭010000',
+            format: '10000',
             cc: 'ccc',
             cond: '01',
             fs: 'sssss',
@@ -2593,7 +2593,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'FCO-Type',
             opcode: '‭010001',
-            format: '‭010001',
+            format: '10001',
             cc: 'ccc',
             cond: '01',
             fs: 'sssss',
