@@ -52,9 +52,28 @@ class InstructionList extends React.Component<IInstructionListProps, IInstructio
                         <Input type="text" name="search" id="filter" autoComplete="off" placeholder="name, description, tags..." value={this.state.searchText} onChange={this.searchTextChanged} innerRef={this.searchFieldRef} />
                     </FormGroup>
                 </Form>
+                {(() => {
+                    if (search.length !== 1) {
+                        return null;
+                    }
+                    const exactMatches = this.props.items.filter(i => i.assemblyName === search[0])
+                    if (exactMatches.length === 0) {
+                        return null;
+                    } else {
+                        return (
+                            <div key="exact-match">
+                                <h3 className="text-capitalize">Exact Match</h3>
+                                <ListGroup flush={true}>
+                                    {exactMatches.map(v => <InstructionListItem instruction={v} key={v.id}/>)}
+                                </ListGroup>
+                            </div>
+                        ); 
+                    }
+                })()}
                 {instructionCategories.map(c => {
                     const instructions = this.props.items.filter(v => 
-                        v.category === c 
+                        v.category === c &&
+                        (search.length !== 1 || v.assemblyName !== search[0])
                         && (
                             search.length === 0 || 
                             search.reduce((a, s) => a && (
