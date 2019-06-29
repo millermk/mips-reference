@@ -33,7 +33,7 @@ export const guideSource: IGuide[] = [
             { type: 'paragraph', text: "Note that the move instruction doesn't actually change the value in the original register, so it is better to think of it as a copy operation. Finally, once you have the syscall code and arguments set up, you can do the syscall using the syscall instruction:"},
             { type: 'code', text: `syscall`},
             { type: 'paragraph', text: "So the complete program to add two values and print the sum to the console looks like this:"},
-            { type: 'code', text: `.text;;main:;    li $t0, 3           # $t0 holds constant 3;    li $t1, 6           # $t1 holds constant 6;;    add $t2, $t0, $t1   # $t2 holds the sum;;    li $v0, 0           # Syscall code for print int;    move $a0, $t2       # value to print;    syscall`},
+            { type: 'code', text: `.text;;main:;    li $t0, 3           # $t0 holds constant 3;    li $t1, 6           # $t1 holds constant 6;;    add $t2, $t0, $t1   # $t2 holds the sum;;    li $v0, 1           # Syscall code for print int;    move $a0, $t2       # value to print;    syscall`},
             { type: 'paragraph', text: "To run the program in QtSpim, you can copy it into a text file and save it with a .s extension. Then, in QtSpim, use the Reinitialize and Load File button, select the file, and hit Run. If you want to run a program again or you've changed the code, use the Reinitialize and Load File button again. If you don't see any console window when you run the program, make sure Console is checked under the Window menu. "},
         ]
     },
