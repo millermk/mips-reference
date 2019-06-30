@@ -40,7 +40,7 @@ export const guideSource: IGuide[] = [
     {
         id: 'control-flow',
         name: 'Control Flow',
-        description: 'Branching/jumping, if/else blocks, and loops',
+        description: 'Branching & jumping, if & if-else blocks, and loops',
         items: [
             { type: 'heading', text: "Control flow"},
             { type: 'paragraph', text: "Control flow is the order in which your code gets run by the processor. In a language like c, you can use statements like if, for, and while to specify blocks of code to jump over or repeat. MIPS assembly language doesn't have these statements, so code is simply run line after line starting at the main: label and continuing until the end of the file is reached. If you need to do anything more complex, you need to use branch or jump instruction."},
@@ -66,7 +66,13 @@ export const guideSource: IGuide[] = [
             { type: 'code', text: `for (t0 = 0, t0 < 10, t0++) {;    t2 = t2 + 4;}`},
             { type: 'paragraph', text: "The equivalent code in MIPS:"},
             { type: 'code', text: `    li $t0, 0               # $t0 will be the loop counter;    li $t1, 10              # $t1 will be the max value;;loop:;    bge $t0, $t1, exitLoop  # if the counter is greater than or equal to the max, exit the loop;    addi $t2, $t2, 4        # add 4 to $t2;    addi $t0, $t0, 1        # increment the loop counter;    b loop                  # run the loop again;;exitLoop:                   # if we get here, the loop is done;...;`},
-            { type: 'paragraph', text: "Writing a loop will require at least one label and one branch statement. In this case, it is written with two of each. If you know for sure that your loop should run at least once, it can be written with a single label at the top, and a conditional branch at the bottom that branches back to the label at the top if the loop needs to run again. If the loop might not even have to run once, the format shown here is needed because it checks the conditional at the top of the loop. If you forget the instruciton that implements the loop counter (or otherwise cunstruct a loop incorrectly), you might create an infinite loop. If you code has an infinite loop and you run it in QtSpim, QtSpim will likely freeze or crash. You might need to use force quit the program."}
+            { type: 'paragraph', text: "Writing a loop will require at least one label and one branch statement. In this case, it is written with two of each. If you know for sure that your loop should run at least once, it can be written with a single label at the top, and a conditional branch at the bottom that branches back to the label at the top if the loop needs to run again. If the loop might not even have to run once, the format shown here is needed because it checks the conditional at the top of the loop. If you forget the instruciton that implements the loop counter (or otherwise cunstruct a loop incorrectly), you might create an infinite loop. If you code has an infinite loop and you run it in QtSpim, QtSpim will likely freeze or crash. You might need to use force quit the program."},
+            { type: 'heading', text: "Nested For Loop"},
+            { type: 'paragraph', text: "A nested for loop that prints out the in a higher level language might look like this:"},
+            { type: 'code', text: `for (t0 = 1, t0 <= 10, t0++) {;    for (t1 = 1, t1 <= 10, t1++) {;        print (t0 * t1);    };}`},
+            { type: 'paragraph', text: "The equivalent code in MIPS:"},
+            { type: 'code', text: `    li $t0, 1                           # $t0 is the outer loop counter;    li $t1, 1                           # $t1 is the inner loop counter;    li $t2, 10                          # $t2 is the max value;;outerLoop:;    bgt $t0, $t2, exitOuterLoop         # if counter > max, exit outer loop;    li $t1, 1                           # reset the inner loop counter every time the outer loop runs;innerLoop:;    bgt $t1, $t2, exitInnerLoop         # is counter > max, exit inner loop;    mul $a0, $t0, $t1                   # calculate the sum;    li $v0, 1                           # syscall code for print int;    syscall;    li $v0, 11                          # Syscall code for printing a character;    li, $a0, 32                         # ASCII value of space;    syscall;    addi $t1, $t1, 1                    # increment inner loop counter;    b innerLoop                         # do the inner loop again;exitInnerLoop:;    addi $t0, $t0, 1                    # increment outer loop counter;    b outerLoop                         # do the outer loop again;exitOuterLoop:`},
+            { type: 'paragraph', text: "With nested loops, be sure to leave clear comments for yourself and name your labels logically. Since you'll need multiple labels and counters, it's important to keep everything straight."}
         ]
     },
     {
@@ -115,7 +121,7 @@ export const guideSource: IGuide[] = [
             { type: 'paragraph', text: 'The system keeps printing characters until it finds a null terminator, so strings must be null terminated for printing to the console. You might have noticed that the string in this example contains a new line character (the \\n); this is useful for keeping the console output readable.' },
             { type: 'heading', text: 'Printing Newlines to the Console'},
             { type: 'paragraph', text: 'In the previous example a newline was added to the string to keep the output readable. Sometimes you need to print just a newline. While you can accomplish this by creating a string in the .data section containing only a newline, you can also use the print character syscall as a shortcut:' },
-            { type: 'code', text: 'li $v0, 11          # Syscall code for printing a string;li, $a0, 10         # ASCII value of newline;syscall'},
+            { type: 'code', text: 'li $v0, 11          # Syscall code for printing a character;li, $a0, 10         # ASCII value of newline;syscall'},
             { type: 'heading', text: 'Reading Strings from the Console'},
             { type: 'paragraph', text: 'To read a string from the console, you must first allocate space for the string using the .space directive in the .data section:' },
             { type: 'code', text: '.data;...;inString: .space 10'},
