@@ -12,7 +12,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'Pseudo-Instruction',
             equivalentInstructions: [
-                'addiu $t, $s, 0'
+                'addiu $t, $s, $0'
             ]
         },
         usage: 'move $t, $s',
@@ -192,7 +192,7 @@ export const instructionSource: IInstruction[] = [
         instructionEncoding: {
             type: 'Pseudo-Instruction',
             equivalentInstructions: [
-                'sll $0, $0, 0'
+                'sll $0, $0, $0'
             ]
         },
         usage: 'nop',
