@@ -10,7 +10,7 @@ export const registerSource: IRegister[] = [
         letterNumbers: '$zero',
         description: 'Constant zero value',
         preserved: 'n/a',
-        notes: 'This register always holds a value of zero; attempting to assign other values to it will fail.'
+        notes: 'This register always holds a value of zero; attempting to assign other values to it will have no effect.'
     },
     {
         id: 'at',
@@ -19,7 +19,7 @@ export const registerSource: IRegister[] = [
         letterNumbers: '$at',
         description: 'Reserved for usage by the assembler',
         preserved: 'n/a',
-        notes: 'This register is reserved for use by the assembler (e.g. in expanding pseudo instructions). It should not generally by used.'
+        notes: 'This register is reserved for use by the assembler (e.g. in expanding pseudo instructions). It should not generally be used.'
     },
     {
         id: 'values',
