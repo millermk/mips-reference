@@ -429,7 +429,7 @@ export const instructionSource: IInstruction[] = [
         id: 'msub',
         assemblyName: 'msub',
         name: 'Multiply and Subtract',
-        description: 'Multiply two integers and Subtract',
+        description: 'Multiply two integers and subtract',
         category: instructionCategory.ARITHMETIC,
         instructionEncoding: {
             type: 'SPECIAL2-Type',

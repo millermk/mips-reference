@@ -50,7 +50,7 @@ export const instructionTypeSource: IInstructionType[] = [
         id: 'j-type',
         name: 'J-Type',
         shortName: 'J',
-        description: "J-type is named for its focus on maximizing the possible distance of a jump. It can specify a 26-bit address. Like branch instructions, J-Type instructions do not have room to store a 32 bit target address. To 'fit' a 32 bit target into 26 bits, the target address is shifted two bits to the right (instructions are always word-aligned so the rightmost two bits are always 0), and then the upper 6 bits are discarded. When the jump is executed, the address is shifted left 2 bits, and the upper 4 bits of the current PC are added to the stored address to form a complete 32 bit target.",
+        description: "J-type is named for its focus on maximizing the possible distance of a jump. It can specify a 26-bit address. Like branch instructions, J-Type instructions do not have room to store a 32 bit target address. To 'fit' a 32 bit target into 26 bits, the target address is shifted two bits to the right (instructions are always word-aligned so the rightmost two bits are always 0), and then the upper 4 bits are discarded. When the jump is executed, the address is shifted left 2 bits, and the upper 4 bits of the current PC are added to the stored address to form a complete 32 bit target.",
         fields: [
             {name: 'opcode', size: 6},
             {name: 'addr', size: 26}
