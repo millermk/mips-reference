@@ -466,7 +466,7 @@ export const instructionSource: IInstruction[] = [
     {
         id: 'mul',
         assemblyName: 'mul',
-        name: 'Multiply and return lower 32 bits',
+        name: 'Multiply and Return Lower 32 Bits',
         description: 'Multiply two integers, keeping only the lower 32 bits',
         category: instructionCategory.ARITHMETIC,
         instructionEncoding: {
@@ -480,6 +480,50 @@ export const instructionSource: IInstruction[] = [
         },
         usage: 'mul $d, $s, $t',
         result: 'd = s * t (lower 32 bits only)',
+        tags: 'multiply multiplication times'
+    },
+    {
+        id: 'mulo',
+        assemblyName: 'mulo',
+        name: 'Multiply and Return Lower 32 Bits With Overflow',
+        description: 'Multiply two integers, keeping only the lower 32 bits and checking for overflow',
+        category: instructionCategory.ARITHMETIC,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'mult $s, $t',
+                'mfhi $at',
+                'mflo $d',
+                'sra $d, $d, 31',
+                'beq $at, $d, 8',
+                'break',
+                'mflo $d'
+            ]
+        },
+        usage: 'mulo $d, $s, $t',
+        result: 'd = s * t (lower 32 bits only)',
+        notes: 'Will cause an exception if the result does not fit in 32 bits.',
+        tags: 'multiply multiplication times'
+    },
+    {
+        id: 'mulou',
+        assemblyName: 'mulou',
+        name: 'Multiply and Return Lower 32 Bits With Overflow Unsigned',
+        description: 'Multiply two integers, keeping only the lower 32 bits and checking for overflow (unsigned)',
+        category: instructionCategory.ARITHMETIC,
+        instructionEncoding: {
+            type: 'Pseudo-Instruction',
+            equivalentInstructions: [
+                'multu $s, $t',
+                'mfhi $at',
+                'beq $at, $0, 8',
+                'break',
+                'mflo $d'
+            ]
+        },
+        usage: 'mulou $d, $s, $t',
+        result: 'd = s * t (lower 32 bits only)',
+        notes: 'Will cause an exception if the result does not fit in 32 bits.',
         tags: 'multiply multiplication times'
     },
     {
