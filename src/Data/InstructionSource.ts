@@ -326,7 +326,7 @@ export const instructionSource: IInstruction[] = [
         },
         usage: 'sub $t, $s, imm',
         result: 't = s - imm',
-        notes: 'MIPS does not provide a subtract immediate instruction because the immediate value can simply be negated by the assembler, and addi used instead. If the value is -2^15 (which cannot be nagated in 16 bit 2\'s complement), two equivalent instructions are needed. This instruction may also be available as subi in environments other than QtSpim.',
+        notes: 'MIPS does not provide a subtract immediate instruction because the immediate value can simply be negated by the assembler, and addi used instead. If the value is -2^15 (which cannot be negated in 16 bit 2\'s complement), two equivalent instructions are needed. This instruction may also be available as subi in environments other than QtSpim.',
         tags: 'sub subtraction minus'
     },
     {
@@ -346,7 +346,7 @@ export const instructionSource: IInstruction[] = [
         },
         usage: 'subu $t, $s, imm',
         result: 't = s - imm',
-        notes: 'MIPS does not provide a subtract immediate unsigned instruction because the immediate value can simply be negated by the assembler, and addiu used instead. If the value is -2^15 (which cannot be nagated in 16 bit 2\'s complement), two equivalent instructions are needed. This instruction may also be available as subiu in environments other than QtSpim.',
+        notes: 'MIPS does not provide a subtract immediate unsigned instruction because the immediate value can simply be negated by the assembler, and addiu used instead. If the value is -2^15 (which cannot be negated in 16 bit 2\'s complement), two equivalent instructions are needed. This instruction may also be available as subiu in environments other than QtSpim.',
         tags: 'sub subtraction minus'
     },
     {
