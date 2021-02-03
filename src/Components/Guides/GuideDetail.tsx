@@ -21,17 +21,22 @@ class GuideDetail extends React.Component<IGuideDetailProps, IGuideDetailState> 
             <div>
                 <h1>{this.props.item.name}</h1>
                 {this.props.item.items.map((v) => {
+                    let itemComponent: JSX.Element;
                     switch (v.type) {
                         case 'heading': {
-                            return <h4 className="text-primary">{v.text}</h4>;
+                            itemComponent = <h4 className="text-primary">{v.text}</h4>;
+                            break;
                         }
                         case 'paragraph': {
-                            return <p>{v.text}</p>;
+                            itemComponent = <p>{v.text}</p>;
+                            break;
                         }
                         case 'code': {
-                            return <Card className="bg-light mb-3"><CardBody><pre className="mb-0"><code>{v.text.replace(/;/g, '\n')}</code></pre></CardBody></Card>;
+                            itemComponent = <Card className="bg-light mb-3"><CardBody><pre className="mb-0"><code>{v.text.replace(/;/g, '\n')}</code></pre></CardBody></Card>;
+                            break;
                         }
                     }
+                    return itemComponent;
                 })}
             </div>
         );
