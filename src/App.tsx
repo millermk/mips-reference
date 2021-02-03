@@ -18,7 +18,7 @@ class App extends React.Component {
                         <Container className="bg-light mb-3" fluid={true}>
                             <div className="app-header py-3">
                                 <NavLink className="link-unstyled" to="/">
-                                    <h1 className="display-3"><img className="App-logo" src={icon} />MIPS Reference</h1>
+                                    <h1 className="display-3"><img className="App-logo" src={icon} alt="The site's logo, a drawing of a processor" />MIPS Reference</h1>
                                 </NavLink>
                                 <p className="lead">MIPS instructions, syscalls, registers, and more</p>
 

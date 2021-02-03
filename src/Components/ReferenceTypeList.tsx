@@ -27,7 +27,7 @@ class ReferenceTypeList extends React.Component<IReferenceTypeListProps, IRefere
                             <Card className="mb-3" key={k}>
                                 <CardHeader>
                                     <Link className="link-unstyled" to={`/${k}`}>
-                                        <img className="reference-type-icon" src={process.env.PUBLIC_URL + '/icons/' + k + '.svg'}/>
+                                        <img className="reference-type-icon" src={process.env.PUBLIC_URL + '/icons/' + k + '.svg'} alt=""/>
                                     </Link>
                                     <Link className="link-uncolored" to={`/${k}`}>{DataStructure[k].friendlyName}</Link>
                                 </CardHeader>
