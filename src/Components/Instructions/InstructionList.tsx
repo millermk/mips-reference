@@ -76,10 +76,10 @@ class InstructionList extends React.Component<IInstructionListProps, IInstructio
                         (search.length !== 1 || v.assemblyName !== search[0])
                         && (
                             search.length === 0 || 
-                            search.reduce((a, s) => a && (
+                            search.reduce<boolean>((a, s) => a && (
                                 v.assemblyName.toLowerCase().includes(s) ||
                                 v.description.toLowerCase().includes(s) ||
-                                (v.tags && v.tags.includes(s))
+                                (!!v.tags?.includes(s))
                             ), true)
                     ))
                     if (instructions.length > 0) {
